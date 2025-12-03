@@ -25,3 +25,10 @@ layout_mode = 2
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "hbox button 2"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "hbox button 2"
