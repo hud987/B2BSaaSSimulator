@@ -20,12 +20,19 @@ text = "vbox button 1"
 [node name="ExpandableVbox" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 script = ExtResource("2_el436")
+is_expanded = null
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ExpandableVbox"]
+[node name="DropButton1" type="Button" parent="VBoxContainer/ExpandableVbox"]
 layout_mode = 2
+text = "drop button 1"
 
-[node name="Label" type="Label" parent="VBoxContainer/ExpandableVbox/ScrollContainer"]
+[node name="DropButton2" type="Button" parent="VBoxContainer/ExpandableVbox"]
 layout_mode = 2
+text = "drop button 2"
+
+[node name="DropButton3" type="Button" parent="VBoxContainer/ExpandableVbox"]
+layout_mode = 2
+text = "drop button 3"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
