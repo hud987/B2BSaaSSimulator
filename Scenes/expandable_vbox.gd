@@ -5,11 +5,9 @@ extends VBoxContainer
 @export var transition_type : Tween.TransitionType
 
 func _on_button_pressed() -> void:
-	print("_on_button_pressed")
 	self.expand()
 
 func expand() -> void:
-	print("is_expanded: ", is_expanded)	
 	if is_expanded:
 		set_tween("scale", Vector2(1,0), time)
 	else:
