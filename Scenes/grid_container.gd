@@ -1,10 +1,16 @@
-extends VBoxContainer
-
+extends GridContainer
+	
 @export var is_expanded : bool = true
 @export var time : float = 0.1
 @export var transition_type : Tween.TransitionType
 
+#Force the initial render to be correct
+func _ready() -> void:
+	await get_tree().process_frame #Can force dropdown to render closed
+	scale.y = 1.0 if is_expanded else 0.0
+
 func _on_button_pressed() -> void:
+	print(self.scale)
 	self.expand()
 
 func expand() -> void:

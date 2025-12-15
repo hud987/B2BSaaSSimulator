@@ -1,0 +1,146 @@
+[gd_scene load_steps=3 format=3 uid="uid://ejxl1p4ar3to"]
+
+[ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/grid_container.gd" id="1_t3hkx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el436"]
+
+[node name="B2BSaaSSimulator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Grid" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridBackground" type="ColorRect" parent="Grid"]
+layout_mode = 0
+offset_left = -149.0
+offset_top = -87.0
+offset_right = 1311.0
+offset_bottom = 786.0
+color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuBackground" type="ColorRect" parent="Menu"]
+layout_mode = 0
+offset_right = 354.0
+offset_bottom = 648.0
+color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+
+[node name="MenuDescription" type="MarginContainer" parent="Menu"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 339.0
+offset_bottom = 197.0
+
+[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuDescription"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MenuDescription/VboxButton1"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_el436")
+text = "URL Shortner Service
+make an app that gives short URLs
+Requirement 1 
+    Input    = Short URL (text)
+    Output =  Long URL (text)
+Requirement 2
+    Input    = Long URL (text)
+    Output = Short URL (text)"
+
+[node name="MenuScore" type="MarginContainer" parent="Menu"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 229.0
+offset_right = 339.0
+offset_bottom = 302.0
+
+[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuScore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MenuScore/VboxButton1"]
+layout_mode = 2
+text = "Users:
+0 -> 1,000,000"
+
+[node name="MenuResources" type="VBoxContainer" parent="Menu"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 286.0
+offset_right = 340.0
+offset_bottom = 602.0
+
+[node name="Compute" type="MarginContainer" parent="Menu/MenuResources"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ComputeResources" type="VBoxContainer" parent="Menu/MenuResources/Compute"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Menu/MenuResources/Compute/ComputeResources"]
+layout_mode = 2
+text = "Compute
+"
+
+[node name="GridContainer" type="GridContainer" parent="Menu/MenuResources/Compute/ComputeResources"]
+layout_mode = 2
+columns = 2
+script = ExtResource("1_t3hkx")
+is_expanded = false
+time = 0.2
+
+[node name="Lambda" type="Button" parent="Menu/MenuResources/Compute/ComputeResources/GridContainer"]
+layout_mode = 2
+text = "Lambda
+"
+
+[node name="EC2" type="Button" parent="Menu/MenuResources/Compute/ComputeResources/GridContainer"]
+layout_mode = 2
+text = "EC2"
+
+[node name="Cluster" type="Button" parent="Menu/MenuResources/Compute/ComputeResources/GridContainer"]
+layout_mode = 2
+text = "Cluster
+"
+
+[node name="Storage" type="MarginContainer" parent="Menu/MenuResources"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Storage" type="VBoxContainer" parent="Menu/MenuResources/Storage"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Menu/MenuResources/Storage/Storage"]
+layout_mode = 2
+text = "Storage"
+
+[node name="GridContainer" type="GridContainer" parent="Menu/MenuResources/Storage/Storage"]
+layout_mode = 2
+columns = 2
+script = ExtResource("1_t3hkx")
+is_expanded = false
+time = 0.2
+
+[node name="Object" type="Button" parent="Menu/MenuResources/Storage/Storage/GridContainer"]
+layout_mode = 2
+text = "Object"
+
+[node name="SQL Database" type="Button" parent="Menu/MenuResources/Storage/Storage/GridContainer"]
+layout_mode = 2
+text = "SQL Database
+"
+
+[node name="NoSQL Database" type="Button" parent="Menu/MenuResources/Storage/Storage/GridContainer"]
+layout_mode = 2
+text = "NoSQL Database"
+
+[connection signal="pressed" from="Menu/MenuResources/Compute/ComputeResources/Button" to="Menu/MenuResources/Compute/ComputeResources/GridContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/MenuResources/Storage/Storage/Button" to="Menu/MenuResources/Storage/Storage/GridContainer" method="_on_button_pressed"]
