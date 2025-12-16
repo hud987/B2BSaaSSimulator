@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ejxl1p4ar3to"]
+[gd_scene load_steps=4 format=3 uid="uid://ejxl1p4ar3to"]
 
 [ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/grid_container.gd" id="1_t3hkx"]
+[ext_resource type="Script" uid="uid://c885anti66jdg" path="res://Scenes/tile_map_layer.gd" id="1_uuxxg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el436"]
 
@@ -20,6 +21,10 @@ offset_top = -87.0
 offset_right = 1311.0
 offset_bottom = 786.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Grid"]
+navigation_visibility_mode = 1
+script = ExtResource("1_uuxxg")
 
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0
