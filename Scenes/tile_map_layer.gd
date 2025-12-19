@@ -15,9 +15,11 @@ func _gui_input(event) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			print("Wheel up")
 
+
 func handle_scroll(delta : float) -> void:
 	var local_mouse := get_local_mouse_position()
 	var uv := local_mouse / size
+	print("mouse_uv", uv)
 	shader.set_shader_parameter("mouse_uv", uv)
 	
 	var zoom : float = shader.get_shader_parameter("zoom") + delta * 0.5

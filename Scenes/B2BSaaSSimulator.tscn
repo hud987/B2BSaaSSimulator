@@ -32,11 +32,11 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0jwv"]
 shader = SubResource("Shader_uuxxg")
 shader_parameter/resolution = Vector2(600, 400)
-shader_parameter/line_color = Color(0.2, 0.3, 0.5, 1)
+shader_parameter/line_color = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/zoom = 50.0
 shader_parameter/thickness = 1.0000000149012
 shader_parameter/brightness = 2.0
-shader_parameter/mouse_uv = Vector2(0.5, 0.5)
+shader_parameter/mouse_uv = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el436"]
 
