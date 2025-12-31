@@ -51,13 +51,17 @@ offset_bottom = 40.0
 
 [node name="GridBackground" type="ColorRect" parent="Grid"]
 material = SubResource("ShaderMaterial_u0jwv")
-layout_mode = 0
-offset_left = -149.0
-offset_top = -87.0
-offset_right = 1311.0
-offset_bottom = 786.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = -447.0
+offset_top = -288.0
+offset_right = 1728.7847
+offset_bottom = 1013.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 script = ExtResource("1_uuxxg")
+cell_size = null
+grid_size = null
+zoom_rate = null
 
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0
