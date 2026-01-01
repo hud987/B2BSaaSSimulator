@@ -59,9 +59,6 @@ offset_right = 1728.7847
 offset_bottom = 1013.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 script = ExtResource("1_uuxxg")
-cell_size = null
-grid_size = null
-zoom_rate = null
 
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0
