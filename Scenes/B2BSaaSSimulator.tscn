@@ -60,6 +60,14 @@ offset_bottom = 1013.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 script = ExtResource("1_uuxxg")
 
+[node name="Label" type="Label" parent="Grid/GridBackground"]
+layout_mode = 0
+offset_left = 1011.0
+offset_top = 423.0
+offset_right = 1066.0
+offset_bottom = 468.0
+text = "Users"
+
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -118,10 +126,10 @@ offset_right = 340.0
 offset_bottom = 602.0
 
 [node name="Compute" type="MarginContainer" parent="Menu/MenuResources"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
 [node name="ComputeResources" type="VBoxContainer" parent="Menu/MenuResources/Compute"]
+clip_contents = true
 layout_mode = 2
 
 [node name="Button" type="Button" parent="Menu/MenuResources/Compute/ComputeResources"]
@@ -165,7 +173,6 @@ text = "Storage"
 layout_mode = 2
 columns = 2
 script = ExtResource("1_t3hkx")
-is_expanded = false
 time = 0.2
 
 [node name="Object" type="Button" parent="Menu/MenuResources/Storage/Storage/GridContainer"]

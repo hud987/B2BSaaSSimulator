@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 @export var cell_size : Vector2 = Vector2(32, 32)
 @export var grid_size : Vector2i = Vector2i(40, 30)

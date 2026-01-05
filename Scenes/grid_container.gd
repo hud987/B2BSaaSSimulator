@@ -7,10 +7,12 @@ extends GridContainer
 #Force the initial render to be correct
 func _ready() -> void:
 	await get_tree().process_frame #Can force dropdown to render closed
+	print("custom minimum: ", self.custom_minimum_size.y)
+	print("is_expanded: ", is_expanded)
 	scale.y = 1.0 if is_expanded else 0.0
 
 func _on_button_pressed() -> void:
-	print(self.scale)
+	print("button pressed", self.scale)
 	self.expand()
 
 func expand() -> void:
