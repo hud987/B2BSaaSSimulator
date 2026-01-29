@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq28c2opb7y11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_421s8"]
+
+[node name="Lambda" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Polygon2D" parent="."]
+color = Color(0.3137255, 0.2627451, 1, 1)
+polygon = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
+uv = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_421s8")

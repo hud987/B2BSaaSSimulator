@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ejxl1p4ar3to"]
 
-[ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/grid_container.gd" id="1_t3hkx"]
-[ext_resource type="Script" uid="uid://c885anti66jdg" path="res://Scenes/tile_map_layer.gd" id="1_uuxxg"]
+[ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/collapsable_menu_script.gd" id="1_t3hkx"]
+[ext_resource type="Script" uid="uid://c885anti66jdg" path="res://Scenes/grid_background_scaling_script.gd" id="1_uuxxg"]
 
 [sub_resource type="Shader" id="Shader_uuxxg"]
 code = "shader_type canvas_item;
@@ -74,23 +74,27 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MenuBackground" type="ColorRect" parent="Menu"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 8.1
+anchor_bottom = 8.1
+offset_top = -324.0
 offset_right = 354.0
-offset_bottom = 648.0
+offset_bottom = 324.0
 color = Color(0.5649617, 0.5649616, 0.5649616, 1)
 
-[node name="MenuDescription" type="MarginContainer" parent="Menu"]
+[node name="MenuDescription" type="MarginContainer" parent="Menu/MenuBackground"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 339.0
-offset_bottom = 197.0
+offset_bottom = 220.0
 
-[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuDescription"]
+[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuBackground/MenuDescription"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu/MenuDescription/VboxButton1"]
+[node name="Label" type="Label" parent="Menu/MenuBackground/MenuDescription/VboxButton1"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_el436")
 text = "URL Shortner Service
@@ -102,7 +106,7 @@ Requirement 2
     Input    = Long URL (text)
     Output = Short URL (text)"
 
-[node name="MenuScore" type="MarginContainer" parent="Menu"]
+[node name="MenuScore" type="MarginContainer" parent="Menu/MenuBackground"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 15.0
@@ -110,81 +114,83 @@ offset_top = 229.0
 offset_right = 339.0
 offset_bottom = 302.0
 
-[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuScore"]
+[node name="VboxButton1" type="VBoxContainer" parent="Menu/MenuBackground/MenuScore"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu/MenuScore/VboxButton1"]
+[node name="Label" type="Label" parent="Menu/MenuBackground/MenuScore/VboxButton1"]
 layout_mode = 2
 text = "Users:
 0 -> 1,000,000"
 
-[node name="MenuResources" type="VBoxContainer" parent="Menu"]
+[node name="MenuResources" type="VBoxContainer" parent="Menu/MenuBackground"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 286.0
 offset_right = 340.0
 offset_bottom = 602.0
 
-[node name="ComputeButton" type="Button" parent="Menu/MenuResources"]
+[node name="ComputeButton" type="Button" parent="Menu/MenuBackground/MenuResources"]
 layout_mode = 2
 text = "Compute
 "
 
-[node name="ComputeResources" type="Control" parent="Menu/MenuResources"]
+[node name="ComputeResources" type="Control" parent="Menu/MenuBackground/MenuResources"]
 clip_contents = true
 layout_mode = 2
 script = ExtResource("1_t3hkx")
+is_expanded = false
 
-[node name="GridContainer" type="GridContainer" parent="Menu/MenuResources/ComputeResources"]
+[node name="GridContainer" type="GridContainer" parent="Menu/MenuBackground/MenuResources/ComputeResources"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 324.0
 offset_bottom = 70.0
 columns = 2
 
-[node name="Lambda" type="Button" parent="Menu/MenuResources/ComputeResources/GridContainer"]
+[node name="Lambda" type="Button" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
 layout_mode = 2
 text = "Lambda
 "
 
-[node name="EC2" type="Button" parent="Menu/MenuResources/ComputeResources/GridContainer"]
+[node name="EC2" type="Button" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
 layout_mode = 2
 text = "EC2"
 
-[node name="Cluster" type="Button" parent="Menu/MenuResources/ComputeResources/GridContainer"]
+[node name="Cluster" type="Button" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
 layout_mode = 2
 text = "Cluster
 "
 
-[node name="StorageButton" type="Button" parent="Menu/MenuResources"]
+[node name="StorageButton" type="Button" parent="Menu/MenuBackground/MenuResources"]
 layout_mode = 2
 text = "Storage"
 
-[node name="StorageResources" type="Control" parent="Menu/MenuResources"]
+[node name="StorageResources" type="Control" parent="Menu/MenuBackground/MenuResources"]
 clip_contents = true
 layout_mode = 2
 script = ExtResource("1_t3hkx")
+is_expanded = false
 
-[node name="GridContainer" type="GridContainer" parent="Menu/MenuResources/StorageResources"]
+[node name="GridContainer" type="GridContainer" parent="Menu/MenuBackground/MenuResources/StorageResources"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 324.0
 offset_bottom = 70.0
 columns = 2
 
-[node name="Object" type="Button" parent="Menu/MenuResources/StorageResources/GridContainer"]
+[node name="Object" type="Button" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
 layout_mode = 2
 text = "Object"
 
-[node name="SQL Database" type="Button" parent="Menu/MenuResources/StorageResources/GridContainer"]
+[node name="SQL Database" type="Button" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
 layout_mode = 2
 text = "SQL Database
 "
 
-[node name="NoSQL Database" type="Button" parent="Menu/MenuResources/StorageResources/GridContainer"]
+[node name="NoSQL Database" type="Button" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
 layout_mode = 2
 text = "NoSQL Database"
 
 [connection signal="mouse_entered" from="Grid/GridBackground" to="Grid/GridBackground" method="_on_mouse_entered"]
-[connection signal="pressed" from="Menu/MenuResources/ComputeButton" to="Menu/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
-[connection signal="pressed" from="Menu/MenuResources/StorageButton" to="Menu/MenuResources/StorageResources" method="_on_storage_button_pressed"]
+[connection signal="pressed" from="Menu/MenuBackground/MenuResources/ComputeButton" to="Menu/MenuBackground/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
+[connection signal="pressed" from="Menu/MenuBackground/MenuResources/StorageButton" to="Menu/MenuBackground/MenuResources/StorageResources" method="_on_storage_button_pressed"]
