@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ejxl1p4ar3to"]
+[gd_scene load_steps=7 format=3 uid="uid://ejxl1p4ar3to"]
 
 [ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/collapsable_menu_script.gd" id="1_t3hkx"]
 [ext_resource type="Script" uid="uid://c885anti66jdg" path="res://Scenes/grid_background_scaling_script.gd" id="1_uuxxg"]
+[ext_resource type="Script" uid="uid://3atsco7ukxrb" path="res://Scenes/lambda.gd" id="3_54177"]
 
 [sub_resource type="Shader" id="Shader_uuxxg"]
 code = "shader_type canvas_item;
@@ -138,7 +139,6 @@ text = "Compute
 clip_contents = true
 layout_mode = 2
 script = ExtResource("1_t3hkx")
-is_expanded = false
 
 [node name="GridContainer" type="GridContainer" parent="Menu/MenuBackground/MenuResources/ComputeResources"]
 layout_mode = 0
@@ -147,10 +147,17 @@ offset_right = 324.0
 offset_bottom = 70.0
 columns = 2
 
-[node name="Lambda" type="Button" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
+[node name="Lambda" type="Panel" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
+custom_minimum_size = Vector2(63, 31)
 layout_mode = 2
-text = "Lambda
-"
+script = ExtResource("3_54177")
+
+[node name="Label" type="Label" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 28.0
+text = "Lambda"
 
 [node name="EC2" type="Button" parent="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer"]
 layout_mode = 2
@@ -193,4 +200,5 @@ text = "NoSQL Database"
 
 [connection signal="mouse_entered" from="Grid/GridBackground" to="Grid/GridBackground" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/ComputeButton" to="Menu/MenuBackground/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
+[connection signal="gui_input" from="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" to="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" method="_on_gui_input"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/StorageButton" to="Menu/MenuBackground/MenuResources/StorageResources" method="_on_storage_button_pressed"]
