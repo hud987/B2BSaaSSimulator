@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ejxl1p4ar3to"]
 
 [ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/collapsable_menu_script.gd" id="1_t3hkx"]
-[ext_resource type="Script" uid="uid://c885anti66jdg" path="res://Scenes/grid_background_scaling_script.gd" id="1_uuxxg"]
+[ext_resource type="Script" uid="uid://cr41gb3m2fvep" path="res://Scenes/camera_script.gd" id="2_u0jwv"]
 [ext_resource type="Script" uid="uid://3atsco7ukxrb" path="res://Scenes/lambda.gd" id="3_54177"]
 
 [sub_resource type="Shader" id="Shader_uuxxg"]
@@ -45,12 +45,17 @@ shader_parameter/mouse_uv = Vector2(1, 1)
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Grid" type="Control" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+script = ExtResource("2_u0jwv")
+
+[node name="Grid" type="Control" parent="Camera2D"]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="GridBackground" type="ColorRect" parent="Grid"]
+[node name="GridBackground" type="ColorRect" parent="Camera2D/Grid"]
 material = SubResource("ShaderMaterial_u0jwv")
 layout_mode = 1
 anchors_preset = -1
@@ -59,9 +64,8 @@ offset_top = -288.0
 offset_right = 1728.7847
 offset_bottom = 1013.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
-script = ExtResource("1_uuxxg")
 
-[node name="Label" type="Label" parent="Grid/GridBackground"]
+[node name="Label" type="Label" parent="Camera2D/Grid/GridBackground"]
 layout_mode = 0
 offset_left = 1011.0
 offset_top = 423.0
@@ -198,7 +202,7 @@ text = "SQL Database
 layout_mode = 2
 text = "NoSQL Database"
 
-[connection signal="mouse_entered" from="Grid/GridBackground" to="Grid/GridBackground" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Camera2D/Grid/GridBackground" to="Camera2D/Grid/GridBackground" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/ComputeButton" to="Menu/MenuBackground/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
 [connection signal="gui_input" from="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" to="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" method="_on_gui_input"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/StorageButton" to="Menu/MenuBackground/MenuResources/StorageResources" method="_on_storage_button_pressed"]
