@@ -1,55 +1,55 @@
 extends Camera2D
 
-@export var duration = 0.3	# move interpolation duration
-@export var zoom_steps = 3	# zoom steps needed
+@export var zoom_increment = 0.2
 
-@onready var tween = $Tween
-@onready var timer = $Timer
-@onready var from := Vector3()
-@onready var to := Vector3()
+@onready var grid_background : Control = %GridBackground
 
-var viewport_size : Vector2 = Vector2(320, 180)
-var zoom_boundaries : Vector2
-var map_center : Vector2
-var texture_size : Vector2
-var visible_size : Vector2
-var dt_zoom : float
 var mouse_button_wheel = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
 
-var edge_margin = 5
-var camera_speed = 200.0
-var map_size = Vector2(640, 540)
-var un_zoomed_viewport_size = Vector2(640, 360)
-var zoom_x = 2
-var zoom_y = 2
-
-var shake_amplitude : int
-var default_offset : Vector2
-
 func _input(event):
-	print("camera input: ", event)
 	if event is InputEventMouseButton \
 	and event.button_index in mouse_button_wheel \
 	and event.pressed:
-	#if event.is_action("MouseWheelDown"):
-		print("camera 1: ", event)
-		if zoom_x > 1:
-			var mouse_position = get_viewport().get_mouse_position()
-			var pre_zoom_value = zoom
-			zoom_x -= 0.25
-			zoom_y -= 0.25
-			zoom = Vector2(zoom_x, zoom_y)
-			position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
-	elif event.is_action("MouseWheelUp"):
-		if zoom_x < 4:
-			var mouse_position = get_viewport().get_mouse_position()
-			var pre_zoom_value = zoom
-			zoom_x += 0.25
-			zoom_y += 0.25
-			zoom = Vector2(zoom_x, zoom_y)
-			position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
+		var mouse_position = get_viewport().get_mouse_position()
+		var pre_zoom_value = zoom
+		
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN \
+		and zoom.x > 0.8:
+			zoom -= Vector2(zoom_increment, zoom_increment)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP \
+		and zoom.x < 4:
+			zoom += Vector2(zoom_increment, zoom_increment)
+			
+		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
+		position.x = clamp(position.x, grid_background.position.x, grid_background.size.x)
+		position.y = clamp(position.y, grid_background.position.y, grid_background.size.y)
+		print("zoom: ", zoom)
+		print("camera position: ", position)
+		print("grid_background position: ", grid_background.position)
+		print("grid_background size: ", grid_background.size)
 
 
+
+
+#@onready var tween = $Tween
+#@onready var timer = $Timer
+#@onready var from := Vector3()
+#@onready var to := Vector3()
+#
+#var viewport_size : Vector2 = Vector2(320, 180)
+#var zoom_boundaries : Vector2
+#var map_center : Vector2
+#var texture_size : Vector2
+#var visible_size : Vector2
+#var dt_zoom : float
+#
+#var edge_margin = 5
+#var camera_speed = 200.0
+#var map_size = Vector2(640, 540)
+#var un_zoomed_viewport_size = Vector2(640, 360)
+#
+#var shake_amplitude : int
+#var default_offset : Vector2
 
 #func _process(delta):
 	#print("camera delta: ", delta)

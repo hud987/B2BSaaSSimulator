@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ejxl1p4ar3to"]
 
-[ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scenes/collapsable_menu_script.gd" id="1_t3hkx"]
-[ext_resource type="Script" uid="uid://cr41gb3m2fvep" path="res://Scenes/camera_script.gd" id="2_u0jwv"]
+[ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scripts/collapsable_menu_script.gd" id="1_t3hkx"]
+[ext_resource type="Script" uid="uid://cr41gb3m2fvep" path="res://Scripts/camera_script.gd" id="2_u0jwv"]
 [ext_resource type="Script" uid="uid://3atsco7ukxrb" path="res://Scenes/lambda.gd" id="3_54177"]
 
 [sub_resource type="Shader" id="Shader_uuxxg"]
@@ -49,13 +49,8 @@ anchors_preset = 0
 offset = Vector2(576, 324)
 script = ExtResource("2_u0jwv")
 
-[node name="Grid" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="GridBackground" type="ColorRect" parent="Camera2D/Grid"]
+[node name="GridBackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_u0jwv")
 layout_mode = 1
 anchors_preset = -1
@@ -65,7 +60,7 @@ offset_right = 1728.7847
 offset_bottom = 1013.0
 color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 
-[node name="Label" type="Label" parent="Camera2D/Grid/GridBackground"]
+[node name="Label" type="Label" parent="GridBackground"]
 layout_mode = 0
 offset_left = 1011.0
 offset_top = 423.0
@@ -73,19 +68,11 @@ offset_right = 1066.0
 offset_bottom = 468.0
 text = "Users"
 
-[node name="Menu" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Menu" type="CanvasLayer" parent="."]
 
 [node name="MenuBackground" type="ColorRect" parent="Menu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 8.1
-anchor_bottom = 8.1
-offset_top = -324.0
 offset_right = 354.0
-offset_bottom = 324.0
+offset_bottom = 648.0
 color = Color(0.5649617, 0.5649616, 0.5649616, 1)
 
 [node name="MenuDescription" type="MarginContainer" parent="Menu/MenuBackground"]
@@ -202,7 +189,7 @@ text = "SQL Database
 layout_mode = 2
 text = "NoSQL Database"
 
-[connection signal="mouse_entered" from="Camera2D/Grid/GridBackground" to="Camera2D/Grid/GridBackground" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="GridBackground" to="GridBackground" method="_on_mouse_entered"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/ComputeButton" to="Menu/MenuBackground/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
 [connection signal="gui_input" from="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" to="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" method="_on_gui_input"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/StorageButton" to="Menu/MenuBackground/MenuResources/StorageResources" method="_on_storage_button_pressed"]
