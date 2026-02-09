@@ -19,14 +19,27 @@ func _input(event):
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP \
 		and zoom.x < 4:
 			zoom += Vector2(zoom_increment, zoom_increment)
-			
+		
+		self.limit_top = int(grid_background.position.y - self.offset.y)
+		#self.limit_bottom = int(grid_background.size.y - self.offset.y)
+		#self.limit_left = int(grid_background.position.x - self.offset.x)
+		#self.limit_right = int(grid_background.size.x - self.offset.x)
+		
+		#var mouse_pos := get_global_mouse_position()
+		#$Camera2D.zoom += delta
+		#var new_mouse_pos := get_global_mouse_position()
+		#$Camera2D.position += mouse_pos - new_mouse_pos
+		
+		#var mouse_position_new = get_viewport().get_mouse_position()
+		#position += mouse_position - mouse_position_new
 		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
-		position.x = clamp(position.x, grid_background.position.x, grid_background.size.x)
-		position.y = clamp(position.y, grid_background.position.y, grid_background.size.y)
+		position.x = clamp(position.x * 1/zoom.x, grid_background.position.x, grid_background.size.x)
+		position.y = clamp(position.y * 1/zoom.y, grid_background.position.y, grid_background.size.y)
 		print("zoom: ", zoom)
 		print("camera position: ", position)
-		print("grid_background position: ", grid_background.position)
-		print("grid_background size: ", grid_background.size)
+		print("camera global center: ", self.get_screen_center_position())
+		#print("grid_background position: ", grid_background.position)
+		#print("grid_background size: ", grid_background.size)
 
 
 
