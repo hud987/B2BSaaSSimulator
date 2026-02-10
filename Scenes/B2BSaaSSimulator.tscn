@@ -44,6 +44,7 @@ shader_parameter/mouse_uv = Vector2(1, 1)
 [node name="B2BSaaSSimulator" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+metadata/_edit_vertical_guides_ = [-795.0]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(576, 324)

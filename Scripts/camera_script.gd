@@ -5,25 +5,32 @@ extends Camera2D
 @onready var grid_background : Control = %GridBackground
 
 var mouse_button_wheel = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
+var middle_mouse_currently_pressed = false
+
+func _ready():
+	set_camera_limits()
+
+func _unhandled_input(event):
+	print("unhandled_input: ", event)
 
 func _input(event):
+	var mouse_position = get_viewport().get_mouse_position()
+	var pre_zoom_value = zoom
+	
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_MIDDLE:
+		print("middle mouse: ", event)
+		middle_mouse_currently_pressed = event.pressed
+		
 	if event is InputEventMouseButton \
 	and event.button_index in mouse_button_wheel \
 	and event.pressed:
-		var mouse_position = get_viewport().get_mouse_position()
-		var pre_zoom_value = zoom
-		
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN \
 		and zoom.x > 0.8:
 			zoom -= Vector2(zoom_increment, zoom_increment)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP \
 		and zoom.x < 4:
 			zoom += Vector2(zoom_increment, zoom_increment)
-		
-		self.limit_top = int(grid_background.position.y - self.offset.y)
-		#self.limit_bottom = int(grid_background.size.y - self.offset.y)
-		#self.limit_left = int(grid_background.position.x - self.offset.x)
-		#self.limit_right = int(grid_background.size.x - self.offset.x)
 		
 		#var mouse_pos := get_global_mouse_position()
 		#$Camera2D.zoom += delta
@@ -33,15 +40,23 @@ func _input(event):
 		#var mouse_position_new = get_viewport().get_mouse_position()
 		#position += mouse_position - mouse_position_new
 		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
-		position.x = clamp(position.x * 1/zoom.x, grid_background.position.x, grid_background.size.x)
-		position.y = clamp(position.y * 1/zoom.y, grid_background.position.y, grid_background.size.y)
+		
 		print("zoom: ", zoom)
+		print("mouse position: ", mouse_position)
 		print("camera position: ", position)
 		print("camera global center: ", self.get_screen_center_position())
-		#print("grid_background position: ", grid_background.position)
-		#print("grid_background size: ", grid_background.size)
 
 
+func set_camera_limits():
+	var grid_left_side_x = grid_background.position.x
+	var grid_right_side_x = grid_background.position.x + grid_background.size.x 
+	var grid_top_side_y = grid_background.position.y
+	var grid_bottom_side_y = grid_background.position.y + grid_background.size.y
+	
+	self.limit_bottom = int(grid_bottom_side_y - self.offset.y)
+	self.limit_top = int(grid_top_side_y - self.offset.y)
+	self.limit_left = int(grid_left_side_x - self.offset.x)
+	self.limit_right = int(grid_right_side_x - self.offset.x)
 
 
 #@onready var tween = $Tween
