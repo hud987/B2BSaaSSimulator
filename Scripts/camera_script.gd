@@ -9,9 +9,11 @@ var middle_mouse_currently_pressed = false
 
 func _ready():
 	set_camera_limits()
-
-func _unhandled_input(event):
-	print("unhandled_input: ", event)
+	
+	print("zoom: ", zoom)
+	print("camera position: ", position)
+	print("camera center guess: ", position + (self.offset * (1 / zoom.x)))
+	print("camera screen center: ", self.get_screen_center_position())
 
 func _input(event):
 	var mouse_position = get_viewport().get_mouse_position()
@@ -32,19 +34,16 @@ func _input(event):
 		and zoom.x < 4:
 			zoom += Vector2(zoom_increment, zoom_increment)
 		
-		#var mouse_pos := get_global_mouse_position()
-		#$Camera2D.zoom += delta
-		#var new_mouse_pos := get_global_mouse_position()
-		#$Camera2D.position += mouse_pos - new_mouse_pos
-		
-		#var mouse_position_new = get_viewport().get_mouse_position()
-		#position += mouse_position - mouse_position_new
+		print("position delta: ", (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom))
 		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
+		
+		var temp = position + (self.offset * (1 / pre_zoom_value.x))
 		
 		print("zoom: ", zoom)
 		print("mouse position: ", mouse_position)
 		print("camera position: ", position)
-		print("camera global center: ", self.get_screen_center_position())
+		print("camera center guess: ", temp)
+		print("camera screen center: ", self.get_screen_center_position())
 
 
 func set_camera_limits():
@@ -94,6 +93,14 @@ func set_camera_limits():
 	#position += move_vector
 	#position.x = clamp(position.x, viewport_size.x / zoom_x, map_size.x - viewport_size.x / zoom_x)
 	#position.y = clamp(position.y, viewport_size.y / zoom_y, map_size.y - viewport_size.y / zoom_y)	
+	
+	#var mouse_pos := get_global_mouse_position()
+	#$Camera2D.zoom += delta
+	#var new_mouse_pos := get_global_mouse_position()
+	#$Camera2D.position += mouse_pos - new_mouse_pos
+	
+	#var mouse_position_new = get_viewport().get_mouse_position()
+	#position += mouse_position - mouse_position_new 
 
 #func _ready() -> void:
 	#zoom_boundaries = Vector2(0, 0)

@@ -1,6 +1,8 @@
 extends Panel
 
 @onready var lambda = preload("res://Resources/Lambda.tscn")
+@onready var grid_background : Control = %GridBackground
+
 var currTile
 
 func _on_gui_input(event):
@@ -21,8 +23,7 @@ func _on_gui_input(event):
 			if get_child_count() > 1:
 				get_child(1).queue_free()
 				
-			var grid = get_tree().get_root().get_node("B2BSaaSSimulator/Grid")
-			grid.add_child(tempLambda)
+			grid_background.add_child(tempLambda)
 			tempLambda.global_position = event.global_position
 		
 	else:
