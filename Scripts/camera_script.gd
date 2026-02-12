@@ -6,14 +6,26 @@ extends Camera2D
 
 var mouse_button_wheel = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
 var middle_mouse_currently_pressed = false
+var middle_mouse_pivot_position = Vector2(0, 0)
 
 func _ready():
 	set_camera_limits()
-	
-	print("zoom: ", zoom)
-	print("camera position: ", position)
-	print("camera center guess: ", position + (self.offset * (1 / zoom.x)))
-	print("camera screen center: ", self.get_screen_center_position())
+
+func _process(_delta):
+	if middle_mouse_currently_pressed:
+		var gap = middle_mouse_pivot_position - get_global_mouse_position()
+		self.position += gap
+		
+		var viewport_size = get_viewport_rect().size * zoom
+		var half_width = viewport_size.x / 2
+		var half_height = viewport_size.y / 2
+		self.position.x = clamp(self.position.x, self.limit_left + half_width, self.limit_right - half_width)
+		self.position.y = clamp(self.position.y, self.limit_top  + half_height, self.limit_bottom - half_height)
+		
+		print("gap: ", gap)
+		print("camera position: ", self.position)
+		print("middle mouse pivot: ", middle_mouse_pivot_position)
+		print("global mouse position: ", get_global_mouse_position())
 
 func _input(event):
 	var mouse_position = get_viewport().get_mouse_position()
@@ -22,6 +34,7 @@ func _input(event):
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_MIDDLE:
 		print("middle mouse: ", event)
+		middle_mouse_pivot_position = get_global_mouse_position()
 		middle_mouse_currently_pressed = event.pressed
 		
 	if event is InputEventMouseButton \
@@ -34,15 +47,12 @@ func _input(event):
 		and zoom.x < 4:
 			zoom += Vector2(zoom_increment, zoom_increment)
 		
-		print("position delta: ", (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom))
 		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
-		
-		var temp = position + (self.offset * (1 / pre_zoom_value.x))
 		
 		print("zoom: ", zoom)
 		print("mouse position: ", mouse_position)
+		print("global mouse position: ", get_global_mouse_position())
 		print("camera position: ", position)
-		print("camera center guess: ", temp)
 		print("camera screen center: ", self.get_screen_center_position())
 
 
