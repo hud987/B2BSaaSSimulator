@@ -72,6 +72,7 @@ text = "Users"
 [node name="Menu" type="CanvasLayer" parent="."]
 
 [node name="MenuBackground" type="ColorRect" parent="Menu"]
+unique_name_in_owner = true
 offset_right = 354.0
 offset_bottom = 648.0
 color = Color(0.5649617, 0.5649616, 0.5649616, 1)
