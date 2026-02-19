@@ -21,11 +21,6 @@ func _process(_delta):
 		var half_height = viewport_size.y / 2
 		self.position.x = clamp(self.position.x, self.limit_left + half_width, self.limit_right - half_width)
 		self.position.y = clamp(self.position.y, self.limit_top  + half_height, self.limit_bottom - half_height)
-		
-		print("gap: ", gap)
-		print("camera position: ", self.position)
-		print("middle mouse pivot: ", middle_mouse_pivot_position)
-		print("global mouse position: ", get_global_mouse_position())
 
 func _input(event):
 	var mouse_position = get_viewport().get_mouse_position()
@@ -33,7 +28,6 @@ func _input(event):
 	
 	if event is InputEventMouseButton \
 	and event.button_index == MOUSE_BUTTON_MIDDLE:
-		print("middle mouse: ", event)
 		middle_mouse_pivot_position = get_global_mouse_position()
 		middle_mouse_currently_pressed = event.pressed
 		
@@ -48,12 +42,6 @@ func _input(event):
 			zoom += Vector2(zoom_increment, zoom_increment)
 		
 		position += (mouse_position - position) * (Vector2(1, 1) - pre_zoom_value / zoom)
-		
-		print("zoom: ", zoom)
-		print("mouse position: ", mouse_position)
-		print("global mouse position: ", get_global_mouse_position())
-		print("camera position: ", position)
-		print("camera screen center: ", self.get_screen_center_position())
 
 
 func set_camera_limits():
