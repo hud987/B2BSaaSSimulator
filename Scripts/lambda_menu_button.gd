@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var lambda = preload("res://Resources/Lambda.tscn")
+@onready var lambda = preload("res://Resources/lambda.tscn")
 @onready var grid_background : Control = %GridBackground
 @onready var menu_background : Control = %MenuBackground
 @onready var camera_2d : Camera2D = %Camera2D

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ejxl1p4ar3to"]
+[gd_scene load_steps=8 format=3 uid="uid://ejxl1p4ar3to"]
 
 [ext_resource type="Script" uid="uid://chhkvyuxx73dt" path="res://Scripts/collapsable_menu_script.gd" id="1_t3hkx"]
 [ext_resource type="Script" uid="uid://cr41gb3m2fvep" path="res://Scripts/camera_script.gd" id="2_u0jwv"]
-[ext_resource type="Script" uid="uid://3atsco7ukxrb" path="res://Scenes/lambda.gd" id="3_54177"]
+[ext_resource type="Script" uid="uid://3atsco7ukxrb" path="res://Scripts/lambda_menu_button.gd" id="3_54177"]
+[ext_resource type="Script" uid="uid://ccjbib8o5h7iw" path="res://Scripts/object_storage_menu_button.gd" id="4_u0jwv"]
 
 [sub_resource type="Shader" id="Shader_uuxxg"]
 code = "shader_type canvas_item;
@@ -96,7 +97,7 @@ text = "URL Shortner Service
 make an app that gives short URLs
 Requirement 1 
     Input    = Short URL (text)
-    Output =  Long URL (text)
+    Output = Long URL (text)
 Requirement 2
     Input    = Long URL (text)
     Output = Short URL (text)"
@@ -179,9 +180,17 @@ offset_right = 324.0
 offset_bottom = 70.0
 columns = 2
 
-[node name="Object" type="Button" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
+[node name="ObjectStorage" type="Panel" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
 layout_mode = 2
+script = ExtResource("4_u0jwv")
+
+[node name="ObjectStorage" type="Label" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer/ObjectStorage"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 text = "Object"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SQL Database" type="Button" parent="Menu/MenuBackground/MenuResources/StorageResources/GridContainer"]
 layout_mode = 2
@@ -196,3 +205,4 @@ text = "NoSQL Database"
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/ComputeButton" to="Menu/MenuBackground/MenuResources/ComputeResources" method="_on_compute_button_pressed"]
 [connection signal="gui_input" from="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" to="Menu/MenuBackground/MenuResources/ComputeResources/GridContainer/Lambda" method="_on_gui_input"]
 [connection signal="pressed" from="Menu/MenuBackground/MenuResources/StorageButton" to="Menu/MenuBackground/MenuResources/StorageResources" method="_on_storage_button_pressed"]
+[connection signal="gui_input" from="Menu/MenuBackground/MenuResources/StorageResources/GridContainer/ObjectStorage" to="Menu/MenuBackground/MenuResources/StorageResources/GridContainer/ObjectStorage" method="_on_gui_input"]
