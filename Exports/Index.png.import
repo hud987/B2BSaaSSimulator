@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dobcwgfofsty5"
-path="res://.godot/imported/B2B SaaS Simulator.icon.png-d136dc3a3b8b7ac8ebcf3fcda9952104.ctex"
+uid="uid://28gqrd3qrun7"
+path="res://.godot/imported/Index.png-0d806266188c0c9dc825524b99bdb00e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Exports/B2B SaaS Simulator.icon.png"
-dest_files=["res://.godot/imported/B2B SaaS Simulator.icon.png-d136dc3a3b8b7ac8ebcf3fcda9952104.ctex"]
+source_file="res://Exports/Index.png"
+dest_files=["res://.godot/imported/Index.png-0d806266188c0c9dc825524b99bdb00e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxmh0yasy7vo2"
-path="res://.godot/imported/B2B SaaS Simulator.apple-touch-icon.png-3cb0f11dd3d7599c53b44c1fbc1a5a03.ctex"
+uid="uid://coll8msbcw72h"
+path="res://.godot/imported/Index.apple-touch-icon.png-ed5cd7a0f14c3d108176bd49fa60607b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Exports/B2B SaaS Simulator.apple-touch-icon.png"
-dest_files=["res://.godot/imported/B2B SaaS Simulator.apple-touch-icon.png-3cb0f11dd3d7599c53b44c1fbc1a5a03.ctex"]
+source_file="res://Exports/Index.apple-touch-icon.png"
+dest_files=["res://.godot/imported/Index.apple-touch-icon.png-ed5cd7a0f14c3d108176bd49fa60607b.ctex"]
 
 [params]
 
